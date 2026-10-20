@@ -140,9 +140,10 @@ layer_state_t layer_state_set_user(layer_state_t layer) {
 
 bool led_update_user(led_t leds) {
   if (leds.caps_lock) {
-    annepro2LedSetMask(CAPS_LOCATION);
+    annepro2LedMaskSetKey(0, 0, (annepro2Led_t){.p = {.red = 0xFF, .green = 0x00, .blue = 0x00, .alpha = 0xFF}});
   } else {
-    annepro2LedClearMask(CAPS_LOCATION);
+    annepro2LedMaskSetKey(0, 0, (annepro2Led_t){.p = {.red = 0x00, .green = 0x00, .blue = 0x00, .alpha = 0x00}});
   }
+  annepro2LedMaskSetAll();
   return true;
 }
